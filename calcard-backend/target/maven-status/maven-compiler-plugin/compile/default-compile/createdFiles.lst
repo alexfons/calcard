@@ -1,0 +1,14 @@
+br\com\calcard\model\Cliente.class
+br\com\calcard\controller\ClienteNaiveBayes.class
+br\com\calcard\repository\ClienteRepository.class
+br\com\calcard\model\Cliente$ClienteBuilder.class
+br\com\calcard\config\RepositoryRestConfigurer.class
+br\com\calcard\Application.class
+br\com\calcard\util\ClientePrediction$ClientePredictionBuilder.class
+br\com\calcard\model\ResultOption$ResultOptionBuilder.class
+br\com\calcard\config\Swagger2Config.class
+br\com\calcard\model\ClienteRequest$ClienteRequestBuilder.class
+br\com\calcard\model\ClienteRequest.class
+br\com\calcard\util\ClientePrediction.class
+br\com\calcard\util\ClienteProbability.class
+br\com\calcard\model\ResultOption.class
