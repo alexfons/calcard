@@ -15,25 +15,26 @@ import br.com.calcard.model.Cliente;
 @RepositoryRestResource(collectionResourceRel = "cliente", path = "cliente")
 public interface ClienteRepository extends PagingAndSortingRepository<Cliente, Long> {
 
-	public Long countByDependentesAndLimite(@Param("dependentes") String dependentes,@Param("limite") String limite);
+	public Long countByDependentesAndLimite(@Param("dependentes") String dependentes, @Param("limite") String limite);
 
-	public Long countByEstadoAndLimite(@Param("estado")String estado,@Param("limite") String limite);
+	public Long countByEstadoAndLimite(@Param("estado") String estado, @Param("limite") String limite);
 
-	public Long countByEstadoCivilAndLimite(@Param("estadoCivil")String estadoCivil,@Param("limite") String limite);
+	public Long countByEstadoCivilAndLimite(@Param("estadoCivil") String estadoCivil, @Param("limite") String limite);
 
-	public Long countByIdadeAndLimite(@Param("idade")String idade, @Param("limite")String limite);
+	public Long countByIdadeAndLimite(@Param("idade") String idade, @Param("limite") String limite);
 
-	public Long countByLimite(@Param("limite")String limite);
+	public Long countByLimite(@Param("limite") String limite);
 
-	public Long countByRendaAndLimite(@Param("renda")String renda, @Param("limite")String limite);
+	public Long countByRendaAndLimite(@Param("renda") String renda, @Param("limite") String limite);
 
-	public Long countByResultadoAndLimite(@Param("resultado")String resultado, @Param("limite")String limite);
+	public Long countByResultadoAndLimite(@Param("resultado") String resultado, @Param("limite") String limite);
 
-	public 	Long countBySexoAndLimite(@Param("sexo")String sexo, @Param("limite")String limite);
+	public Long countBySexoAndLimite(@Param("sexo") String sexo, @Param("limite") String limite);
+
+	public List<Cliente> findByCpfContaining(@Param("q") String q);
+
+	public List<Cliente> findByNome(@Param("q") String q);
 
 	@Query("SELECT DISTINCT c.resultado, c.limite FROM Cliente c")
 	public List<Object[]> findLimiteOptions();
-	
-	public List<Cliente> findByCpfContaining(@Param("q")String q);
-
 }

@@ -28,15 +28,15 @@ public class ClienteNaiveBayes {
 	private ClienteRepository repository;
 
 	@PostMapping("/avaliaProposta")
-	public ResponseEntity<Cliente> avaliaProposta(@RequestBody final ClienteRequest request) {
+	public ResponseEntity<Cliente> avaliaProposta(@RequestBody ClienteRequest request) {
 
 		final ClienteProbability probability = new ClienteProbability(repository).calculate();
 		final Iterator<ResultOption> resultOptions = probability.getResultOptions().iterator();
 		final ClientePrediction prediction = new ClientePrediction(repository).predict(request, resultOptions);
 
-		log.info(request.toString());
-		log.info(probability.toString());
-		log.info(prediction.toString());
+		ClienteNaiveBayes.log.info(request.toString());
+		ClienteNaiveBayes.log.info(probability.toString());
+		ClienteNaiveBayes.log.info(prediction.toString());
 
 		return ResponseEntity.ok(repository.save(prediction.getResult()));
 

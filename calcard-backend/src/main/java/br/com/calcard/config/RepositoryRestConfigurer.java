@@ -21,12 +21,12 @@ public class RepositoryRestConfigurer extends RepositoryRestConfigurerAdapter {
 
 	private void addClassesForPackageName(ClassLoader classLoader, List<Class<?>> classes, String packageName) {
 		try {
-			List<File> dirs = new ArrayList<>();
-			Enumeration<URL> resources = getResources(packageName, classLoader);
+			final List<File> dirs = new ArrayList<>();
+			final Enumeration<URL> resources = getResources(packageName, classLoader);
 			Collections.list(resources).forEach(resource -> dirs.add(new File(resource.getFile())));
 			dirs.forEach(directory -> classes.addAll(findClasses(directory, packageName)));
-		} catch (IOException e) {
-			log.error("ERROR  while findClasses for :: " + packageName, e);
+		} catch (final IOException e) {
+			RepositoryRestConfigurer.log.error("ERROR  while findClasses for :: " + packageName, e);
 		}
 	}
 
@@ -37,19 +37,19 @@ public class RepositoryRestConfigurer extends RepositoryRestConfigurerAdapter {
 	}
 
 	private List<Class<?>> findClasses(File directory, String packageName) {
-		List<Class<?>> classes = new ArrayList<>();
+		final List<Class<?>> classes = new ArrayList<>();
 		if (!directory.exists()) {
 			return classes;
 		}
-		File[] files = directory.listFiles();
-		for (File file : files) {
+		final File[] files = directory.listFiles();
+		for (final File file : files) {
 			if (file.isDirectory()) {
 				classes.addAll(findClasses(file, packageName + "." + file.getName()));
 			} else if (file.getName().endsWith(".class")) {
 				try {
 					classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
-				} catch (ClassNotFoundException e) {
-					log.error("ERROR  while findClasses", e);
+				} catch (final ClassNotFoundException e) {
+					RepositoryRestConfigurer.log.error("ERROR  while findClasses", e);
 				}
 			}
 		}
@@ -57,12 +57,12 @@ public class RepositoryRestConfigurer extends RepositoryRestConfigurerAdapter {
 	}
 
 	private Class<?>[] getClasses() {
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		if (classLoader == null) {
 			return new Class[0];
 		}
 
-		List<Class<?>> classes = new ArrayList<>();
+		final List<Class<?>> classes = new ArrayList<>();
 		Arrays.asList(new String[] {
 				"br.com.oms.core.model",
 				"br.com.oms.generator.model",
