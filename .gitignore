@@ -17,6 +17,29 @@
 .settings/
 *.sublime-workspace
 
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.metadata
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
@@ -43,7 +66,10 @@ Thumbs.db
 
 # Compiled class file
 *.class
-/target
+target/
+bin/
+node_modules/
+
 
 # Log file
 *.log

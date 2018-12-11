@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="regentry">
+    <form (ngSubmit)="onSearch()">
+      <div class="form-group row">
+        <div class="col-5">
+          <input type="search" class="form-control" placeholder="Enter search cpf" name="search" [(ngModel)]="term"
+            (keyup)="onKey($event)" mask='00000000000' required>
+        </div>
+        <div class="col-5"></div>
+        <div class="col-2 text-right">
+          <button type="submit" class="btn btn-primary" (click)="onNew()">New</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+  <div class="regentry" *ngIf="showNew">
+    <form (ngSubmit)="onSave()">
+      <div class="form-group row">
+        <label for="nome-input" class="col-2 col-form-label">Nome</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.nome" name="nome">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="cpf-input" class="col-2 col-form-label">CPF</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.cpf" mask='000.000.000-00' name="cpf">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="idade-input" class="col-2 col-form-label">Idade</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.idade" mask='000' name="idade">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="sexo-input" class="col-2 col-form-label">Sexo</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.sexo" mask='A' name="sexo">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="estado-civil-input" class="col-2 col-form-label">Estado Civil</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.estadoCivil" name="estadoCivil">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="estado-input" class="col-2 col-form-label">Estado</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.estado" mask='AA' name="estado">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="dependentes-input" class="col-2 col-form-label">Dependentes</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.dependentes" mask='000' name="dependentes">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="renda-input" class="col-2 col-form-label">Renda</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.renda" name="renda">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Save</button>
+      <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </form>
+    <br />
+  </div>
+  <div class="reglist">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Idade</th>
+          <th>Sexo</th>
+          <th>Estado civil</th>
+          <th>Estado</th>
+          <th>Dependentes</th>
+          <th>Renda</th>
+          <th>Resultado</th>
+          <th>Limite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{cliente.nome}}</td>
+          <td>{{cliente.cpf | mask: '000.000.000-00'}}</td>
+          <td>{{cliente.idade | mask: '000'}}</td>
+          <td>{{cliente.sexo | mask: 'A'}}</td>
+          <td>{{cliente.estadoCivil}}</td>
+          <td>{{cliente.estado | mask: 'AA'}}</td>
+          <td>{{cliente.dependentes | mask: '000'}}</td>
+          <td>{{cliente.renda}}</td>
+          <td>{{cliente.resultado}}</td>
+          <td>{{cliente.limite}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
